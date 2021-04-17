@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using AppSiteWeb.Data;
+using AppSiteWeb.Services;
 
 namespace AppSiteWeb
 {
@@ -40,6 +41,7 @@ namespace AppSiteWeb
                     options.UseMySql(Configuration.GetConnectionString("AppSiteWebContext"), builder => builder.MigrationsAssembly("AppSiteWeb")));
 
             services.AddScoped<SeedingService>();//Um registro de dependencia.
+            services.AddScoped<VendedorService>();
         }
 
 
