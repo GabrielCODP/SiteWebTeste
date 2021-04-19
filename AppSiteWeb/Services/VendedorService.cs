@@ -23,7 +23,7 @@ namespace AppSiteWeb.Services
 
         public void Insert(Vendedor obj) //Inserir um novo vendedor
         {
-            obj.Departamento = _context.Departamento.First();
+            //obj.Departamento = _context.Departamento.First();
             _context.Add(obj);
             _context.SaveChanges();
         }

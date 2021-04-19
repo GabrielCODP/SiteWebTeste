@@ -42,6 +42,7 @@ namespace AppSiteWeb
 
             services.AddScoped<SeedingService>();//Um registro de dependencia.
             services.AddScoped<VendedorService>();
+            services.AddScoped<DepartamentoService>();
         }
 
 
