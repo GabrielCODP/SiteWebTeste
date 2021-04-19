@@ -13,6 +13,7 @@ namespace AppSiteWeb.Models
         public DateTime DataDeNascimento { get; set; }
         public double Salario { get; set; }
         public Departamento Departamento { get; set; } //O vendedor faz parte de um departamento
+        public int DepartamentoId { get; set; }
         public ICollection<TotalDeVendas> Vendas { get; set; } = new List<TotalDeVendas>(); //Cada vendedor tem suas vendas, registrada.
 
         public Vendedor() { }
