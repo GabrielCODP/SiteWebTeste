@@ -4,6 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using AppSiteWeb.Services.Exceptions;
+
+
 
 namespace AppSiteWeb.Services
 {
@@ -26,6 +30,37 @@ namespace AppSiteWeb.Services
             //obj.Departamento = _context.Departamento.First();
             _context.Add(obj);
             _context.SaveChanges();
+        }
+
+        public Vendedor FindById(int id)
+        {
+            return _context.Vendedor.Include(obj => obj.Departamento).FirstOrDefault(obj => obj.Id == id);
+        }
+
+        public void Remove (int id)
+        {
+            var obj = _context.Vendedor.Find(id);
+            _context.Vendedor.Remove(obj);
+            _context.SaveChanges();
+        }
+
+        public void Update(Vendedor obj)
+        {
+            if (!_context.Vendedor.Any(x => x.Id == obj.Id)) //Tem algum registro
+            {
+                throw new NotFoundException("Id not found");
+            }
+
+            try
+            {
+                _context.Update(obj);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+               
+            }
         }
 
     }
