@@ -20,33 +20,41 @@ namespace AppSiteWeb.Services
             _context = context;
         }
 
-        public List<Vendedor> FindAll()
+        public async Task<List<Vendedor>> FindAllAsync()
         {
-            return _context.Vendedor.ToList(); //Acessar os dados da tabela de vendedores.
+            return await _context.Vendedor.ToListAsync(); //Acessar os dados da tabela de vendedores.
         }
 
-        public void Insert(Vendedor obj) //Inserir um novo vendedor
+        public async Task InsertAsync(Vendedor obj) //Inserir um novo vendedor
         {
             //obj.Departamento = _context.Departamento.First();
             _context.Add(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public Vendedor FindById(int id)
+        public async Task<Vendedor> FindByIdAsync(int id)
         {
-            return _context.Vendedor.Include(obj => obj.Departamento).FirstOrDefault(obj => obj.Id == id);
+            return await _context.Vendedor.Include(obj => obj.Departamento).FirstOrDefaultAsync(obj => obj.Id == id);
         }
 
-        public void Remove (int id)
+        public async Task RemoveAsync(int id)
         {
-            var obj = _context.Vendedor.Find(id);
-            _context.Vendedor.Remove(obj);
-            _context.SaveChanges();
+            try
+            {
+                var obj = await _context.Vendedor.FindAsync(id);
+                _context.Vendedor.Remove(obj);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                throw new IntegrityException(e.Message);
+            }
         }
 
-        public void Update(Vendedor obj)
+        public async Task UpdateAsync(Vendedor obj)
         {
-            if (!_context.Vendedor.Any(x => x.Id == obj.Id)) //Tem algum registro
+            bool hasAny = await _context.Vendedor.AnyAsync(x => x.Id == obj.Id);
+            if (!hasAny) //Tem algum registro
             {
                 throw new NotFoundException("Id not found");
             }
@@ -54,12 +62,12 @@ namespace AppSiteWeb.Services
             try
             {
                 _context.Update(obj);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException e)
             {
                 throw new DbConcurrencyException(e.Message);
-               
+
             }
         }
 

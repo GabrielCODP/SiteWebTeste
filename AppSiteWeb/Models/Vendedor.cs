@@ -35,6 +35,8 @@ namespace AppSiteWeb.Models
         public double Salario { get; set; }
 
         public Departamento Departamento { get; set; } //O vendedor faz parte de um departamento
+
+        [Display(Name = "Selecionar o Departamento")]
         public int DepartamentoId { get; set; }
         public ICollection<TotalDeVendas> Vendas { get; set; } = new List<TotalDeVendas>(); //Cada vendedor tem suas vendas, registrada.
 
