@@ -20,18 +20,37 @@ namespace AppSiteWeb.Services
 
         public async Task<List<TotalDeVendas>> FindByDateAsync(DateTime? minDate, DateTime? maxDate)
         {
-            var result = from obj in _context.TotalDeVendas select obj;
+            var result = from obj in _context.TotalDeVendas select obj; //Pegar 
 
-            if (minDate.HasValue)
+            if (minDate.HasValue) //Informei uma data minima para a busca 
             {
-                result = result.Where(x => x.Data >= minDate.Value);
+                result = result.Where(x => x.Data >= minDate.Value); //uma retrição
             }
+
             if (maxDate.HasValue)
             {
                 result = result.Where(x => x.Data <= maxDate.Value);
             }
 
             return await result.Include(x => x.Vendedor).Include(x => x.Vendedor.Departamento).OrderByDescending(x => x.Data).ToListAsync();
+        }
+
+
+        public async Task<List<IGrouping<Departamento,TotalDeVendas>>> FindByDateGroupingAsync(DateTime? minDate, DateTime? maxDate)
+        {
+            var result = from obj in _context.TotalDeVendas select obj; //Pegar 
+
+            if (minDate.HasValue) //Informei uma data minima para a busca 
+            {
+                result = result.Where(x => x.Data >= minDate.Value); //uma retrição
+            }
+
+            if (maxDate.HasValue)
+            {
+                result = result.Where(x => x.Data <= maxDate.Value);
+            }
+
+            return await result.Include(x => x.Vendedor).Include(x => x.Vendedor.Departamento).OrderByDescending(x => x.Data).GroupBy(x => x.Vendedor.Departamento).ToListAsync();
         }
     }
 }
