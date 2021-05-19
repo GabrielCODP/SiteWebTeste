@@ -1,4 +1,5 @@
-﻿using AppSiteWeb.Services;
+﻿using AppSiteWeb.Models;
+using AppSiteWeb.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,16 +11,42 @@ namespace AppSiteWeb.Controllers
     public class TotalDeVendasController : Controller
     {
         private readonly TotalDeVendasServices _totalDeVendasService;
+        private readonly VendedorService _vendedorService;
 
-        public TotalDeVendasController(TotalDeVendasServices totalDeVendasService)
+        public TotalDeVendasController(TotalDeVendasServices totalDeVendasService, VendedorService vendedorService)
         {
             _totalDeVendasService = totalDeVendasService;
+            _vendedorService = vendedorService;
         }
 
         public IActionResult Index()
         {
             return View();
         }
+
+        public async Task<IActionResult> Create() 
+        {
+            var vendedores = await _vendedorService.FindAllCompletoAsync();
+            var viewModel = new TotalDeVendasFormViewModel { Vendedores = vendedores };
+            return View(viewModel);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(TotalDeVendas vendas)
+        {
+            if (!ModelState.IsValid)
+            {
+                var vendedores = await _vendedorService.FindAllCompletoAsync();
+                var viewModel = new TotalDeVendasFormViewModel {Vendas=vendas ,Vendedores = vendedores };
+                return View(viewModel);
+            }
+
+            await _totalDeVendasService.InsertAsync(vendas);
+            return RedirectToAction(nameof(Index));
+        }
+
         public async Task<IActionResult> SimpleSearch(DateTime? minDate, DateTime? maxDate)
         {
             if (!minDate.HasValue) //Se não tem valor minimo

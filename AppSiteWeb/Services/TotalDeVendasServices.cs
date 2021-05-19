@@ -18,6 +18,15 @@ namespace AppSiteWeb.Services
         }
 
 
+
+        public async Task InsertAsync(TotalDeVendas obj)
+        {
+            _context.Add(obj);
+            await _context.SaveChangesAsync();
+        }
+        
+
+   
         public async Task<List<TotalDeVendas>> FindByDateAsync(DateTime? minDate, DateTime? maxDate)
         {
             var result = from obj in _context.TotalDeVendas select obj; //Pegar 

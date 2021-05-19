@@ -23,5 +23,7 @@ namespace AppSiteWeb.Services
             return await _context.Departamento.OrderBy(x => x.Nome).ToListAsync();
         }
 
+       
+
     }
 }

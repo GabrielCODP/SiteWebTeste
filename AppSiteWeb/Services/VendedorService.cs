@@ -25,6 +25,11 @@ namespace AppSiteWeb.Services
             return await _context.Vendedor.ToListAsync(); //Acessar os dados da tabela de vendedores.
         }
 
+        public async Task<List<Vendedor>> FindAllCompletoAsync()
+        {
+            return await _context.Vendedor.Include(obj => obj.Departamento).ToListAsync(); //Acessar os dados da tabela de vendedores.
+        }
+
         public async Task InsertAsync(Vendedor obj) //Inserir um novo vendedor
         {
             //obj.Departamento = _context.Departamento.First();

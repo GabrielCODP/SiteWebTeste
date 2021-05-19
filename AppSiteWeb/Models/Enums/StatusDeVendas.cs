@@ -9,6 +9,6 @@ namespace AppSiteWeb.Models.Enums
     {
         Pendente = 0,
         Faturada = 1,
-        Cancelada = 0
+        Cancelada = 2
     }
 }
