@@ -1,8 +1,14 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
+
+* {
+    font-family: sans-serif;
+}
+
 body {
-    padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url(../images/ImagemFundo/ImagemFundo4/Slide1.PNG);
+    background-size: cover;
 }
 
 /* Wrapping element */
@@ -19,15 +25,115 @@ body {
 }
 
 /* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
+.carousel-inner .item img {
     width: 100%;
 }
+
 
 /* QR code generator */
 #qrCode {
     margin: 15px;
 }
 
+.headerSite {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+}
+
+.tituloSite {
+    font-size: 2.5em;
+    color: #1d4380;
+    font-weight: 800;
+    margin-left: 250px;
+}
+
+    .tituloSite .verde {
+        color: #8ac149;
+    }
+
+    .tituloSite .azul {
+        color: #002542;
+    }
+
+.headerSite a:hover {
+    text-decoration: none;
+    color: #1d4380;
+    font-weight: 800;
+}
+
+.areaLogo img {
+    max-height: 80px;
+}
+
+.cardsVeiculos {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.cardVeiculos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex: 0 1 auto;
+}
+
+
+.interiorCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px black;
+    padding: 10px;
+    border-radius: 5px;
+    flex: 0 1 auto;
+}
+
+.descriCarros {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    max-height: 120px;
+    overflow: hidden;
+    flex: 0 1 auto;
+}
+
+.cardVeiculos img {
+    max-width: 100%;
+    border-radius: 5px;
+    min-height: 150px;
+    max-height: 200px;
+}
+
+.informacoesConceci {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around
+}
+
+.cardClientes {
+    display: flex;
+    justify-content: space-around;
+    width: 800px;
+}
+
+.depoimentoCli {
+    height: 120px;
+    overflow: hidden;
+}
+
+.cardCliente img {
+    border-radius: 5px;
+    height: 150px;
+    width: 150px;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

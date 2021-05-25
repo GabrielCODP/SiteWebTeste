@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,6 +13,8 @@ namespace AppSiteWeb.Models
         public double Preco { get; set; }
 
         public Departamento Departamento { get; set; }
+
+        [Display(Name = "Departamento")]
         public int DepartamentoId { get; set; }
 
         public Produto() { }
