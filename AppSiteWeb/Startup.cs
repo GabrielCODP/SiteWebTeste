@@ -47,6 +47,8 @@ namespace AppSiteWeb
             services.AddScoped<VendedorService>();
             services.AddScoped<DepartamentoService>();
             services.AddScoped<TotalDeVendasServices>();
+            services.AddScoped<ProdutoService>();
+
         }
 
 

@@ -3,14 +3,16 @@ using System;
 using AppSiteWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AppSiteWeb.Migrations
 {
     [DbContext(typeof(AppSiteWebContext))]
-    partial class AppSiteWebContextModelSnapshot : ModelSnapshot
+    [Migration("20210524221224_MProduto")]
+    partial class MProduto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +40,7 @@ namespace AppSiteWeb.Migrations
 
                     b.Property<string>("Nome");
 
-                    b.Property<double>("Preco");
+                    b.Property<double>("PrecoDoProduto");
 
                     b.HasKey("Id");
 
@@ -95,7 +97,7 @@ namespace AppSiteWeb.Migrations
             modelBuilder.Entity("AppSiteWeb.Models.Produto", b =>
                 {
                     b.HasOne("AppSiteWeb.Models.Departamento", "Departamento")
-                        .WithMany("Produtos")
+                        .WithMany()
                         .HasForeignKey("DepartamentoId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

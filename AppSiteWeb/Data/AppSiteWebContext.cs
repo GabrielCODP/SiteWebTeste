@@ -17,5 +17,7 @@ namespace AppSiteWeb.Data
         public DbSet<Departamento> Departamento { get; set; }
         public DbSet<Vendedor> Vendedor { get; set; }
         public DbSet<TotalDeVendas> TotalDeVendas { get; set; }
+
+        public DbSet<Produto> Produto { get; set; }
     }
 }

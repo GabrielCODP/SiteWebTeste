@@ -3,14 +3,16 @@ using System;
 using AppSiteWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AppSiteWeb.Migrations
 {
     [DbContext(typeof(AppSiteWebContext))]
-    partial class AppSiteWebContextModelSnapshot : ModelSnapshot
+    [Migration("20210525201110_MICorrecao")]
+    partial class MICorrecao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,24 +29,6 @@ namespace AppSiteWeb.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departamento");
-                });
-
-            modelBuilder.Entity("AppSiteWeb.Models.Produto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("DepartamentoId");
-
-                    b.Property<string>("Nome");
-
-                    b.Property<double>("Preco");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DepartamentoId");
-
-                    b.ToTable("Produto");
                 });
 
             modelBuilder.Entity("AppSiteWeb.Models.TotalDeVendas", b =>
@@ -90,14 +74,6 @@ namespace AppSiteWeb.Migrations
                     b.HasIndex("DepartamentoId");
 
                     b.ToTable("Vendedor");
-                });
-
-            modelBuilder.Entity("AppSiteWeb.Models.Produto", b =>
-                {
-                    b.HasOne("AppSiteWeb.Models.Departamento", "Departamento")
-                        .WithMany("Produtos")
-                        .HasForeignKey("DepartamentoId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("AppSiteWeb.Models.TotalDeVendas", b =>

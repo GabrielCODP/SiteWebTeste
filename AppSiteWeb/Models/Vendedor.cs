@@ -15,8 +15,8 @@ namespace AppSiteWeb.Models
         public string Nome { get; set; }
 
 
-        [Required] 
-        [EmailAddress(ErrorMessage ="Email inválido")]
+        [Required]
+        [EmailAddress(ErrorMessage = "Email inválido")]
         [DataType(DataType.EmailAddress)] //Essas semânicas trás funções extra na aplicação
         public string Email { get; set; }
 
@@ -30,7 +30,7 @@ namespace AppSiteWeb.Models
 
         [Required]
         [Display(Name = "Salário")]
-        [Range(100.0,50000.00, ErrorMessage ="O salário tem que ser entre {1} até {2}")]
+        [Range(100.0, 50000.00, ErrorMessage = "O salário tem que ser entre {1} até {2}")]
         [DisplayFormat(DataFormatString = "{0:F2}")]
         public double Salario { get; set; }
 

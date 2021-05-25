@@ -10,7 +10,7 @@ namespace AppSiteWeb.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public ICollection<Vendedor> Vendedores { get; set; } = new List<Vendedor>(); //Ele tem vários vendedores, dentro de um departamento.
-
+        public ICollection<Produto> Produtos { get; set; } = new List<Produto>();
         public Departamento()
         {
         }
@@ -24,6 +24,11 @@ namespace AppSiteWeb.Models
         public void AddVendedor(Vendedor vendedor)
         {
             Vendedores.Add(vendedor);
+        }
+
+        public void AddProduto(Produto produto)
+        {
+            Produtos.Add(produto);
         }
 
         public double TotalDeVendasDepartamento(DateTime inicio, DateTime final)

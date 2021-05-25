@@ -13,7 +13,7 @@ namespace AppSiteWeb.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyy}")]
         public DateTime Data { get; set; }
 
-        [DisplayFormat(DataFormatString ="{0:F2}")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         public double Total { get; set; }
         public StatusDeVendas Status { get; set; }
         public Vendedor Vendedor { get; set; }
