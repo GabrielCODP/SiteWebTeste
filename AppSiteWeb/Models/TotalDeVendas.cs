@@ -21,6 +21,14 @@ namespace AppSiteWeb.Models
         [Display(Name = "Selecionar o Vendedor")]
         public int VendedorId { get; set; }
 
+
+        public Produto Produto { get; set; }
+
+        [Display(Name = "Escolha o Produto")]
+        public int ProdutoId { get; set; }
+
+
+
         public TotalDeVendas()
         {
 

@@ -24,9 +24,9 @@ namespace AppSiteWeb.Services
             _context.Add(obj);
             await _context.SaveChangesAsync();
         }
-        
 
-   
+     
+
         public async Task<List<TotalDeVendas>> FindByDateAsync(DateTime? minDate, DateTime? maxDate)
         {
             var result = from obj in _context.TotalDeVendas select obj; //Pegar 
@@ -41,7 +41,8 @@ namespace AppSiteWeb.Services
                 result = result.Where(x => x.Data <= maxDate.Value);
             }
 
-            return await result.Include(x => x.Vendedor).Include(x => x.Vendedor.Departamento).OrderByDescending(x => x.Data).ToListAsync();
+            //return await result.Include(x => x.Vendedor).Include(x => x.Vendedor.Departamento).OrderByDescending(x => x.Data).ToListAsync();
+            return await result.Include(x => x.Vendedor).Include(x => x.Vendedor.Departamento).Include(x => x.Produto).OrderByDescending(x => x.Data).ToListAsync();
         }
 
 
@@ -59,7 +60,7 @@ namespace AppSiteWeb.Services
                 result = result.Where(x => x.Data <= maxDate.Value);
             }
 
-            return await result.Include(x => x.Vendedor).Include(x => x.Vendedor.Departamento).OrderByDescending(x => x.Data).GroupBy(x => x.Vendedor.Departamento).ToListAsync();
+            return await result.Include(x => x.Vendedor).Include(x => x.Vendedor.Departamento).Include(x => x.Produto).OrderByDescending(x => x.Data).GroupBy(x => x.Vendedor.Departamento).ToListAsync();
         }
     }
 }

@@ -12,11 +12,19 @@ namespace AppSiteWeb.Controllers
     {
         private readonly TotalDeVendasServices _totalDeVendasService;
         private readonly VendedorService _vendedorService;
+        private readonly ProdutoService _produtoService;
 
-        public TotalDeVendasController(TotalDeVendasServices totalDeVendasService, VendedorService vendedorService)
+        //public TotalDeVendasController(TotalDeVendasServices totalDeVendasService, VendedorService vendedorService)
+        //{
+        //    _totalDeVendasService = totalDeVendasService;
+        //    _vendedorService = vendedorService;
+        //}
+
+        public TotalDeVendasController(TotalDeVendasServices totalDeVendasService, VendedorService vendedorService, ProdutoService produtoService)
         {
             _totalDeVendasService = totalDeVendasService;
             _vendedorService = vendedorService;
+            _produtoService = produtoService;
         }
 
         public IActionResult Index()
@@ -27,7 +35,9 @@ namespace AppSiteWeb.Controllers
         public async Task<IActionResult> Create() 
         {
             var vendedores = await _vendedorService.FindAllCompletoAsync();
-            var viewModel = new TotalDeVendasFormViewModel { Vendedores = vendedores };
+            var produto = await _produtoService.FindAllAsync();
+
+            var viewModel = new TotalDeVendasFormViewModel { Vendedores = vendedores, Produtos = produto };
             return View(viewModel);
         }
 
@@ -39,7 +49,8 @@ namespace AppSiteWeb.Controllers
             if (!ModelState.IsValid)
             {
                 var vendedores = await _vendedorService.FindAllCompletoAsync();
-                var viewModel = new TotalDeVendasFormViewModel {Vendas=vendas ,Vendedores = vendedores };
+                var produto = await _produtoService.FindAllAsync();
+                var viewModel = new TotalDeVendasFormViewModel {Vendas=vendas ,Vendedores = vendedores,Produtos=produto };
                 return View(viewModel);
             }
 

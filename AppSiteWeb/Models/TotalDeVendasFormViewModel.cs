@@ -10,6 +10,7 @@ namespace AppSiteWeb.Models
     {
         public TotalDeVendas Vendas { get; set; }
         public ICollection<Vendedor> Vendedores { get; set; }
+        public ICollection<Produto> Produtos { get; set; }
 
        // public ICollection<StatusDeVendas> Status { get; set; }
 

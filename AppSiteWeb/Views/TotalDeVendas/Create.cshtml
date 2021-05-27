@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Criar Venda";
+    //<input asp-for="Vendas.Total" class="form-control" />
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -19,16 +20,26 @@
                 <span asp-validation-for="Vendas.Data" class="text-danger"></span>
             </div>
 
+
+
             <div class="form-group">
                 <label asp-for="Vendas.Total" class="control-label"></label>
                 <input asp-for="Vendas.Total" class="form-control" />
                 <span asp-validation-for="Vendas.Total" class="text-danger"></span>
             </div>
 
+
+            <div class="form-group">
+                <label asp-for="Vendas.ProdutoId" class="control-label"></label>
+                <select asp-for="Vendas.ProdutoId" asp-items="@(new SelectList(Model.Produtos,"Id","Nome"))" class="form-control"></select>
+            </div>
+
             <div class="form-group">
                 <label asp-for="Vendas.VendedorId" class="control-label"></label>
                 <select asp-for="Vendas.VendedorId" asp-items="@(new SelectList(Model.Vendedores,"Id","Nome"))" class="form-control"></select>
             </div>
+
+
 
             <div class="form-group">
                 <input type="submit" value="Criar" class="btn btn-default" />

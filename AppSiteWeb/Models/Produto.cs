@@ -17,6 +17,8 @@ namespace AppSiteWeb.Models
         [Display(Name = "Departamento")]
         public int DepartamentoId { get; set; }
 
+
+
         public Produto() { }
 
         public Produto(int id, string nome, double preco, Departamento departamento)

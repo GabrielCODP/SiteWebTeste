@@ -46,6 +46,9 @@
                             Vendedor
                         </th>
                         <th>
+                           Produto
+                        </th>
+                        <th>
                             Status
                         </th>
                     </tr>
@@ -53,20 +56,20 @@
                 <tbody>
                     @foreach (var item in departmentGroup)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Data)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Total)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Vendedor.Nome)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Data)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Total)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Vendedor.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

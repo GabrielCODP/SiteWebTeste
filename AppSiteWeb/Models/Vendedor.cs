@@ -68,5 +68,7 @@ namespace AppSiteWeb.Models
         {
             return Vendas.Where(ven => ven.Data >= inicio && ven.Data <= final).Sum(ven => ven.Total);
         }
+       
+       
     }
 }
